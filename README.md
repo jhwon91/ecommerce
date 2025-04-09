@@ -17,7 +17,7 @@
 - ### [요구사항](docs/01.RequirementsAnalysis.md)
 - ### [시퀀스 다이어그램](docs/02.SequenceDiagram.md)
 - ### [ERD 설계서](docs/03.ERD.md)
-- ### [API 정의서](docs/04.API.md)
+- ### [API 정의서](docs/API/API.md)
 
 ## 2. 서버 환경
 
