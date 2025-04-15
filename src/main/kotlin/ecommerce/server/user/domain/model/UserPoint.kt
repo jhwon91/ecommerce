@@ -16,6 +16,6 @@ class UserPoint(
     val user: User,
 
     @Column(nullable = false)
-    val amount: Int
+    val amount: Long
 ):BaseEntity() {
 }

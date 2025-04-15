@@ -12,7 +12,7 @@ class PointHistory(
     val user: User,
 
     @Column(nullable = false)
-    val amount: Int,
+    val amount: Long,
 
     @Enumerated(EnumType.STRING)
     val transactionType: TransactionType
