@@ -5,7 +5,7 @@ import ecommerce.server.order.domain.OrderStatus
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "Order")
+@Table(name = "Orders")
 class Order(
     @Column(nullable = false)
     val userId: Long,
