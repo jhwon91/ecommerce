@@ -1,15 +1,19 @@
 package ecommerce.server.user.domain.model
 
 import ecommerce.server.global.BaseEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "users")
 class User(
     @Column(nullable = false)
-    val name:String
+    val name:String,
+
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    val pointHistories: MutableList<PointHistory> = mutableListOf(),
+
+    @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    var userPoint: UserPoint? = null
 ):BaseEntity() {
 
 }

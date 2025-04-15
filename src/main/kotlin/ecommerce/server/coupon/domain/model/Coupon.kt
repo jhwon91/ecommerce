@@ -24,6 +24,9 @@ class Coupon(
     var issuedQuantity: Long = 0,
 
     @Column(nullable = false)
-    val expiryDate: LocalDateTime
+    val expiryDate: LocalDateTime,
+
+    @OneToMany(mappedBy = "coupon", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    val couponIssues: MutableList<CouponIssue> = mutableListOf()
 ):BaseEntity() {
 }

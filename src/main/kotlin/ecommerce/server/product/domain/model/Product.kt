@@ -1,9 +1,7 @@
 package ecommerce.server.product.domain.model
 
 import ecommerce.server.global.BaseEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "Product")
@@ -15,6 +13,9 @@ class Product(
     val price: Long,
 
     @Column(nullable = false)
-    val quantity: Long
+    val quantity: Long,
+
+    @OneToOne(mappedBy = "product", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    var stock: Stock? = null,
 ):BaseEntity() {
 }
