@@ -10,6 +10,9 @@ class Order(
     @Column(nullable = false)
     val userId: Long,
 
+    @Column(updatable = false)
+    val couponIssueId: Long,
+
     @Column(nullable = false)
     val cartId: Long,
 
