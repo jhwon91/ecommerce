@@ -7,6 +7,10 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "Orders")
 class Order(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+
     @Column(nullable = false)
     val userId: Long,
 

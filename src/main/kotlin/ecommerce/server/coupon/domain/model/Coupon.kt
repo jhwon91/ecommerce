@@ -8,6 +8,10 @@ import java.time.LocalDateTime
 @Entity
 @Table(name = "Coupon")
 class Coupon(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+
     @Column(nullable = false)
     val name: String,
 

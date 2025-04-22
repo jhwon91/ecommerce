@@ -7,6 +7,10 @@ import java.time.LocalDateTime
 @Entity
 @Table(name = "CouponIssue")
 class CouponIssue(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "coupon_id", nullable = false)
     val coupon: Coupon,

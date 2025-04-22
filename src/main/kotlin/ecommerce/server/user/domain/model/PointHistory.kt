@@ -7,6 +7,11 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "PointHistory")
 class PointHistory(
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,

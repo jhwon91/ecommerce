@@ -10,10 +10,6 @@ import java.time.LocalDateTime
 @EntityListeners(AuditingEntityListener::class)
 
 abstract class BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     var createdAt: LocalDateTime = LocalDateTime.now()

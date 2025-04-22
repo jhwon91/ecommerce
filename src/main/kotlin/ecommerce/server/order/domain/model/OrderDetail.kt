@@ -6,6 +6,10 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "OrderDetail")
 class OrderDetail(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     val order: Order,

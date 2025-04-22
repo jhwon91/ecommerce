@@ -11,7 +11,7 @@ class UserPointService(
 ) {
 
     fun getUserPoint(user: User): UserPoint {
-        return user.id?.let { userPointRepository.findByUserId(it) }
+        return userPointRepository.findByUserId(user.id!!)
             ?: UserPoint(user = user, amount = 0).also { userPointRepository.save(it) }
     }
 
