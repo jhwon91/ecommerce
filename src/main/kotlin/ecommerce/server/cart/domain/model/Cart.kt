@@ -5,7 +5,7 @@ import ecommerce.server.global.BaseEntity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "Cart")
+@Table(name = "cart")
 class Cart(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

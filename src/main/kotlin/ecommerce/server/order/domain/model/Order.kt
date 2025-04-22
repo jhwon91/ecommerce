@@ -5,7 +5,7 @@ import ecommerce.server.order.domain.OrderStatus
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 class Order(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

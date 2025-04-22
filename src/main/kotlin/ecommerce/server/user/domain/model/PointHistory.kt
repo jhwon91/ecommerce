@@ -5,7 +5,7 @@ import ecommerce.server.user.domain.TransactionType
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "PointHistory")
+@Table(name = "point_history")
 class PointHistory(
 
     @Id

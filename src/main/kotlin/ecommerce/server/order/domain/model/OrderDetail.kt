@@ -4,7 +4,7 @@ import ecommerce.server.global.BaseEntity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "OrderDetail")
+@Table(name = "order_detail")
 class OrderDetail(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

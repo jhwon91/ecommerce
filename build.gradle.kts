@@ -41,6 +41,10 @@ dependencies {
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation("io.mockk:mockk:1.13.10")
+	testImplementation ("org.testcontainers:testcontainers:1.19.4") // TC 의존성
+	testImplementation ("org.testcontainers:junit-jupiter:1.19.4")  // TC 의존성
+	testImplementation ("org.testcontainers:mysql:1.19.4")     // mySQL 컨테이너 사용
+	testRuntimeOnly("mysql:mysql-connector-java:8.0.33")
 }
 
 kotlin {

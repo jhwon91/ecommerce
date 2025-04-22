@@ -4,6 +4,8 @@ import ecommerce.server.global.BaseEntity
 import ecommerce.server.payment.domain.PaymentStatus
 import jakarta.persistence.*
 
+@Entity
+@Table(name = "payment")
 class Payment(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
