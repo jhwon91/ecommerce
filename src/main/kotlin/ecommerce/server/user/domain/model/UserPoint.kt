@@ -18,7 +18,9 @@ class UserPoint(
     private var amount: Long
 ):BaseEntity() {
     fun charge(amountToAdd: Long){
-        require(amountToAdd >= 1000){"최소 충전 금액은 1000원 이상이어야 합니다."}
+        require(amountToAdd >= 1000){
+            "최소 충전 금액은 1000원 이상이어야 합니다."
+        }
         this.amount += amountToAdd
     }
 
