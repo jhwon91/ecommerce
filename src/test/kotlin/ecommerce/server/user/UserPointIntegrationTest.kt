@@ -1,5 +1,6 @@
 package ecommerce.server.user
 
+import ecommerce.server.config.TestContainerConfig
 import ecommerce.server.helper.CleanUp
 import ecommerce.server.user.application.UserPointFacade
 import ecommerce.server.user.domain.TransactionType
@@ -7,22 +8,18 @@ import ecommerce.server.user.domain.model.User
 import ecommerce.server.user.domain.repository.PointHistoryRepository
 import ecommerce.server.user.domain.repository.UserPointRepository
 import ecommerce.server.user.domain.repository.UserRepository
-import ecommerce.server.user.domain.service.UserService
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.DynamicPropertyRegistry
-import org.springframework.test.context.DynamicPropertySource
-import org.testcontainers.containers.MySQLContainer
-import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import org.testcontainers.utility.DockerImageName
 import kotlin.test.Test
 
 @SpringBootTest
 @Testcontainers
-class UserPointIntegrationTest {
+class UserPointIntegrationTest: TestContainerConfig() {
+
     @Autowired
     private lateinit var userRepository: UserRepository
 
@@ -36,32 +33,10 @@ class UserPointIntegrationTest {
     private lateinit var cleanUp: CleanUp
 
     @Autowired
-    private lateinit var userService: UserService
-
-    @Autowired
     private lateinit var userPointFacade: UserPointFacade
 
     private lateinit var testUser: User
 
-    companion object {
-        @Container
-        private val mysqlContainer = MySQLContainer<Nothing>(DockerImageName.parse("mysql:8.0")).apply {
-            withDatabaseName("test_db")
-            withUsername("test_user")
-            withPassword("test_password")
-            withReuse(true)  // 컨테이너 재사용 (선택적)
-        }
-
-        @JvmStatic
-        @DynamicPropertySource
-        fun properties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url", mysqlContainer::getJdbcUrl)
-            registry.add("spring.datasource.username", mysqlContainer::getUsername)
-            registry.add("spring.datasource.password", mysqlContainer::getPassword)
-            registry.add("spring.jpa.hibernate.ddl-auto") { "create-drop" }
-            registry.add("spring.datasource.driver-class-name") { "com.mysql.cj.jdbc.Driver" }
-        }
-    }
 
     @BeforeEach
     fun setup() {
@@ -71,7 +46,6 @@ class UserPointIntegrationTest {
         val user = User( name = "테스트사용자")
         testUser = userRepository.save(user)
     }
-
 
     @Test
     fun `사용자 포인트 충전 통합 테스트`() {
