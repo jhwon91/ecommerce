@@ -88,9 +88,7 @@ class UserPointE2ETest: TestContainerConfig() {
         assertThat(balanceFromDb!!.getAmount()).isEqualTo(initialBalance)
 
         // Then: 퍼포먼스 체크
-        val rtt = Duration.between(startTime, Instant.now()).toMillis()
-        extracted(rtt)
-        assertThat(rtt).isLessThanOrEqualTo(500)
+        extracted(startTime)
     }
 
     @Test
@@ -126,12 +124,14 @@ class UserPointE2ETest: TestContainerConfig() {
         assertThat(balanceFromDb!!.getAmount()).isEqualTo(initialBalance + chargeAmount)
 
         // Then: 퍼포먼스 체크
+        extracted(startTime)
+    }
+
+    private fun extracted(startTime: Instant) {
         val rtt = Duration.between(startTime, Instant.now()).toMillis()
-        extracted(rtt)
+        logger.info("퍼포먼스 체크 (RTT) 허용 범위(예: 500ms 이하): = $rtt")
         assertThat(rtt).isLessThanOrEqualTo(500)
     }
 
-    private fun extracted(rtt: Long) {
-        logger.info("퍼포먼스 체크 (RTT) 허용 범위(예: 500ms 이하): = $rtt")
-    }
+
 }
