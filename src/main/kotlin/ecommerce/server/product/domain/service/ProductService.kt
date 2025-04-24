@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service
 class ProductService(
     private val productRepository: ProductRepository
 ) {
-    fun findProducts(sortBy: String, sortOrder: String, limit: Int):List<Product>{
+    fun findProducts(sortBy: String, sortOrder: String?, limit: Int):List<Product>{
         val sort = when(sortOrder) {
             null,"asc" -> Sort.by(sortBy).ascending()
-            "desc" -> Sort.by(sortBy).ascending()
+            "desc" -> Sort.by(sortBy).descending()
             else -> Sort.by(sortBy).ascending()
         }
 
