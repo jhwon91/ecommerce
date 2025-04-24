@@ -9,15 +9,18 @@ import ecommerce.server.user.domain.repository.PointHistoryRepository
 import ecommerce.server.user.domain.repository.UserPointRepository
 import ecommerce.server.user.domain.repository.UserRepository
 import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.junit.jupiter.Testcontainers
 import kotlin.test.Test
 
 @SpringBootTest
 @Testcontainers
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 class UserPointIntegrationTest: TestContainerConfig() {
 
     @Autowired
