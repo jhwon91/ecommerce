@@ -1,5 +1,6 @@
 package ecommerce.server.cart.presentation.dto
 
+import ecommerce.server.cart.application.dto.AddProductToCartCommand
 import io.swagger.v3.oas.annotations.media.Schema
 
 @Schema(description = "장바구니 상품 추가 요청")
@@ -11,5 +12,13 @@ data class CartRequest(
     val userId: Long,
 
     @Schema(description = "수량", example = "5")
-    val quantity: Int
-)
+    val quantity: Long
+){
+    fun toCommand(): AddProductToCartCommand{
+        return AddProductToCartCommand(
+            productId = productId,
+            userId = userId,
+            quantity = quantity
+        )
+    }
+}

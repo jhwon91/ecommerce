@@ -15,6 +15,6 @@ class Stock(
     val product: Product,
 
     @Column(nullable = false)
-    val quantity: Long
+    var quantity: Long
 ):BaseEntity() {
 }

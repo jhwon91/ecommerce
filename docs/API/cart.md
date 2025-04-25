@@ -20,7 +20,6 @@ Body parameter
 - status: 장바구니 상태
 - productId: 상품 ID
 - name: 상품 이름
-- description: 상품 설명
 - price: 상품 가격
 - totalPrice: 상품 총 가격
 - totalQuantity: 상품 총 수량
@@ -34,7 +33,6 @@ Body parameter
          "status": "ACTIVE",
          "productId": 1,
          "name": "상품A",
-         "description": "상품A 설명",
          "price": 100,
          "totalPrice": 1000,
          "totalQuantity": 10

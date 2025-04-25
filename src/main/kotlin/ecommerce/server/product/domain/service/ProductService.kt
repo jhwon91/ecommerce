@@ -5,6 +5,7 @@ import ecommerce.server.product.domain.repository.ProductRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ProductService(
@@ -23,5 +24,38 @@ class ProductService(
 
     fun getProductIdsFromProducts(products: List<Product>): List<Long> {
         return products.map { it.id!! }
+    }
+
+    @Transactional(readOnly = true)
+    fun findProductById(productId: Long): Product {
+        return productRepository.findByIdWithStock(productId)
+            ?: throw IllegalArgumentException("{$productId} 상품이 없습니다")
+    }
+
+    @Transactional(readOnly = true)
+    fun checkStockAvailability(productId: Long, quantity: Long){
+        val product = findProductById(productId)
+
+        val stock = product.stock
+            ?: throw IllegalArgumentException("{$productId} 의 재고가 없습니다.")
+
+        if(stock.quantity < quantity){
+            throw IllegalArgumentException("{$productId}의 재고는 {${stock.quantity}} 입니다. 재고가 부족합니다")
+        }
+    }
+
+    @Transactional
+    fun decreaseStock(productId: Long, quantity: Long) {
+        val product = findProductById(productId)
+
+        val stock = product.stock
+            ?: throw IllegalArgumentException("{$productId} 의 재고가 없습니다.")
+
+        if(stock.quantity < quantity){
+            throw IllegalArgumentException("{$productId}의 재고는 {${stock.quantity}} 입니다. 재고가 부족합니다")
+        }
+
+        stock.quantity -= quantity
+        productRepository.save(product)
     }
 }

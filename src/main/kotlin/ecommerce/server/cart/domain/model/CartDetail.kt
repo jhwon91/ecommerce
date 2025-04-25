@@ -18,9 +18,9 @@ class CartDetail(
     val productId: Long,
 
     @Column(nullable = false)
-    var quantity: Int,
+    var quantity: Long,
 
     @Column(nullable = false)
-    var price: Int,
+    var price: Long,
 ): BaseEntity() {
 }

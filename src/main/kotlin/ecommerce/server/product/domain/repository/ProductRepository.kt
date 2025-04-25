@@ -6,4 +6,7 @@ import org.springframework.data.domain.Pageable
 
 interface ProductRepository {
     fun findAll(pageable: Pageable): Page<Product>
+    fun findById(productId: Long): Product?
+    fun findByIdWithStock(productId: Long): Product?
+    fun save(product: Product): Product
 }
