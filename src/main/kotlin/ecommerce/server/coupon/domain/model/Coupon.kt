@@ -33,4 +33,22 @@ class Coupon(
     @OneToMany(mappedBy = "coupon", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     val couponIssues: MutableList<CouponIssue> = mutableListOf()
 ):BaseEntity() {
+
+    // 쿠폰 발급 가능 여부 확인
+    fun canIssue(): Boolean {
+        return issuedQuantity < totalQuantity && LocalDateTime.now().isBefore(expiryDate)
+    }
+
+    fun issue(userId: Long): CouponIssue {
+        if (!canIssue()) {
+            throw IllegalStateException("쿠폰 발급이 불가능합니다. 수량 초과 또는 만료되었습니다.")
+        }
+        val couponIssue = CouponIssue.create(this,userId)
+
+        couponIssues.add(couponIssue)
+        issuedQuantity++
+
+        return couponIssue
+    }
+
 }

@@ -16,3 +16,8 @@ VALUES
     (1, 100, NOW(), NOW()),
     (2, 200, NOW(), NOW()),
     (3, 300, NOW(), NOW());
+
+INSERT INTO ecommerce.coupon (name, discount_type, discount_value, total_quantity, issued_quantity, expiry_date, created_at, updated_at)
+VALUES
+    ('testCoupon1', 'FIXED_AMOUNT', 1000, 10, 0, '2100-01-01 00:00:00', NOW(), NOW()),
+    ('testCoupon2', 'PERCENTAGE', 10, 20, 0, '2100-01-01 00:00:00', NOW(), NOW());

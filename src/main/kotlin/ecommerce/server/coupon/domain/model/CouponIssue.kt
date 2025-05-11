@@ -22,10 +22,19 @@ class CouponIssue(
     val issuedAt: LocalDateTime = LocalDateTime.now(),
 
     @Column(nullable = false)
-    val expiryDate: LocalDateTime,
+    val expiryDate: LocalDateTime? = null,
 
     @Column(name = "used_at")
     var usedAt: LocalDateTime? = null
 ):BaseEntity() {
-
+    companion object {
+        fun create(coupon: Coupon, userId: Long): CouponIssue {
+            return CouponIssue(
+                coupon = coupon,
+                userId = userId,
+                issuedAt = LocalDateTime.now(),
+                expiryDate = coupon.expiryDate
+            )
+        }
+    }
 }
