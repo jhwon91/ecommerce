@@ -1,7 +1,8 @@
 package ecommerce.server.coupon.presentation
 
-import ecommerce.server.coupon.presentation.dto.CouponResponse
 import ecommerce.server.coupon.presentation.dto.IssueCouponRequest
+import ecommerce.server.coupon.presentation.dto.IssueCouponResponse
+import ecommerce.server.coupon.presentation.dto.UserCouponsResponse
 import ecommerce.server.global.ApiResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
@@ -19,11 +20,11 @@ interface ICouponController {
     fun getUserCoupons(
         @Parameter(description = "사용자 ID", example = "1")
         @RequestParam userId: Long
-    ): ApiResponse<CouponResponse>
+    ): ApiResponse<List<UserCouponsResponse>>
 
     @Operation(summary = "쿠폰 발급 ", description = "사용자에게 쿠폰을 발급 하는 API")
     @PostMapping("/issue")
     fun issueCoupon(
         @RequestBody request: IssueCouponRequest
-    ): ApiResponse<CouponResponse>
+    ): ApiResponse<IssueCouponResponse>
 }
